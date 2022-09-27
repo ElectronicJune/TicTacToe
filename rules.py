@@ -20,3 +20,5 @@ def winner(code):
         return code[4]
     return '-1'
 
+bot_piece = 'X' #default
+player_piece = 'O' #default
