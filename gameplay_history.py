@@ -1,13 +1,14 @@
 class history :
     list = dict()
-    def add(code,piece,piece_position):
-        list[code] = (piece,piece_position)
-    def get_piece(code):
-        if code not in list :
+    def add(self,code,piece,piece_position):
+        self.list[code] = (piece,piece_position)
+    def get_piece(self,code):
+        if code not in self.list :
             return
-        return list[code][0]
-    def get_piece_postion(code):
-        if code not in list :
+        return self.list[code][0]
+    def get_piece_postion(self,code):
+        if code not in self.list :
             return
-        return list[code][1]
+        return self.list[code][1]
+
 
