@@ -6,7 +6,7 @@ import brain
 display.print_title()
 
 # piece info 
-rules.player_piece = input('Choose a piece [O/X]: ')
+rules.player_piece = input('Choose a piece [O/X]: ').strip()
 rules.bot_piece = 'X' if rules.player_piece!='X' else 'O'
 
 #start outer game loop 
