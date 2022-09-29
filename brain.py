@@ -1,5 +1,6 @@
 import numpy as np
 from numpy import random
+import rules
 
 class memory :
     game_code = np.array(['123456789'])
@@ -19,3 +20,14 @@ class memory :
         self.add(code)
         index = np.where(self.game_code==code)[0][0]
         return random.choice(self.game_choice[index],p=[x/sum(self.game_choice_p[index]) for x in self.game_choice_p[index]],size=1)[0]
+    def learn(self,code,position,winner):
+        index = np.where(self.game_code==code)[0][0]
+        if winner == rules.bot_piece:
+            self.game_choice_p[index][np.where(self.game_choice[index]==position)[0][0]] += 2
+        elif winner == rules.player_piece :
+            for i in range(9):
+                if self.game_choice[index][i] != position :
+                    if self.game_choice[index][i] != '0' :
+                        self.game_choice_p[index][i] += 2
+        else :
+            self.game_choice_p[index][np.where(self.game_choice[index]==position)[0][0]] += 1

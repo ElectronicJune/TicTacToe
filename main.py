@@ -49,6 +49,8 @@ while run_game :
             break
         inner_game_round += 1
     #brain learn
+    for key in history.list :
+        bot.learn(key,history.list[key],rules.winner(game_condition))
     history.clear()
     run_game = False if input('Play again? [Y/n]: ').lower()=='n' else True
 
