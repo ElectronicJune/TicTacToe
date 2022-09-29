@@ -13,6 +13,17 @@ rules.bot_piece = 'X' if rules.player_piece!='X' else 'O'
 run_game = True
 game_round = 0
 
+bot = brain.memory()
+#functions
+def bot_play(code):
+    position = bot.react(code)
+    return code[:int(position)-1] + rules.bot_piece + code[int(position):]
+def player_play(code):
+    while True :
+        position = input('Piece position: ').strip()
+        if len(position)==1 and position.isdigit() and (position in code):
+            break
+    return code[:int(position)-1] + rules.player_piece + code[int(position):]
 while run_game :
     game_round += 1
     print('ROUND',game_round)
@@ -22,7 +33,7 @@ while run_game :
         # code 
         pass
     #inner game loop
-    for i in range(9):
+    while True:
         display.print_tictactoe(game_condition)
         #code
         pass
