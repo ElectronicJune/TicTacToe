@@ -8,4 +8,7 @@ class history :
             return
         return self.list[code]
 
+    def clear(self):
+        self.list = dict()
+
 
