@@ -19,10 +19,9 @@ def winner(code):
             return code[i]
     for i in range(3):
         if code[i*3] == code[i*3+1] == code[i*3+2]:
-            return code[i]
+            return code[i*3]
     if code[0] == code[4] == code[8] or code[2] == code[4] == code[6] :
         return code[4]
     return '-1'
-
 bot_piece = 'X' #default
 player_piece = 'O' #default
