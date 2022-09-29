@@ -48,7 +48,8 @@ while run_game :
                 print('DRAW')
             break
         inner_game_round += 1
-
+    #brain learn
+    history.clear()
     run_game = False if input('Play again? [Y/n]: ').lower()=='n' else True
 
 
