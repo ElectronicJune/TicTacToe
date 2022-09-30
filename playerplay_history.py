@@ -10,5 +10,3 @@ class history :
 
     def clear(self):
         self.list = dict()
-
-

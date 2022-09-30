@@ -1,8 +1,10 @@
 import display 
 import rules
 import botplay_history
+import playerplay_history
 import brain
 bot_history = botplay_history.history()
+player_history = playerplay_history.history()
 #print title 
 display.print_title()
 
