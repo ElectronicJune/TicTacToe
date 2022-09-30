@@ -19,16 +19,14 @@ class memory :
     def react(self,code):
         self.add(code)
         index = np.where(self.game_code==code)[0][0]
-        return random.choice(self.game_choice[index],p=[x/sum(self.game_choice_p[index]) for x in self.game_choice_p[index]],size=1)[0]
+        print([x/(self.game_choice_p[index].sum()) for x in self.game_choice_p[index]])
+        return random.choice(self.game_choice[index],p=[x/(self.game_choice_p[index].sum()) for x in self.game_choice_p[index]],size=1)[0]
     def learn(self,code,position,winner):
         index = np.where(self.game_code==code)[0][0]
         if winner == rules.bot_piece:
             self.game_choice_p[index][np.where(self.game_choice[index]==position)[0][0]] += 2
         elif winner == rules.player_piece :
-            for i in range(9):
-                if self.game_choice[index][i] != position :
-                    if self.game_choice[index][i] != '0' :
-                        self.game_choice_p[index][i] += 2
+            self.game_choice_p[index][np.where(self.game_choice[index]==position)[0][0]] -= 1
         else :
             self.game_choice_p[index][np.where(self.game_choice[index]==position)[0][0]] += 1
     def learn_from_player(self,code,position,winner):
@@ -37,9 +35,6 @@ class memory :
         if winner == rules.player_piece:
             self.game_choice_p[index][np.where(self.game_choice[index]==position)[0][0]] += 2
         elif winner == rules.bot_piece :
-            for i in range(9):
-                if self.game_choice[index][i] != position :
-                    if self.game_choice[index][i] != '0' :
-                        self.game_choice_p[index][i] += 2
+            self.game_choice_p[index][np.where(self.game_choice[index]==position)[0][0]] -= 1
         else :
             self.game_choice_p[index][np.where(self.game_choice[index]==position)[0][0]] += 1
