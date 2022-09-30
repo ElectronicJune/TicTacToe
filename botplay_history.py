@@ -1,4 +1,4 @@
-class history :
+class bot_history :
     list = dict()
     def add(self,code,piece_position):
         self.list[code] = piece_position

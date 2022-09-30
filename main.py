@@ -2,7 +2,7 @@ import display
 import rules
 import botplay_history
 import brain
-history = botplay_history.history()
+bot_history = botplay_history.history()
 #print title 
 display.print_title()
 
@@ -18,7 +18,7 @@ bot = brain.memory()
 #functions
 def bot_play(code):
     position = bot.react(code)
-    history.add(code,position)
+    bot_history.add(code,position)
     return code[:int(position)-1] + rules.bot_piece + code[int(position):]
 def player_play(code):
     while True :
@@ -49,9 +49,9 @@ while run_game :
             break
         inner_game_round += 1
     #brain learn
-    for key in history.list :
-        bot.learn(key,history.list[key],rules.winner(game_condition))
-    history.clear()
+    for key in bot_history.list :
+        bot.learn(key,bot_history.list[key],rules.winner(game_condition))
+    bot_history.clear()
     run_game = False if input('Play again? [Y/n]: ').lower()=='n' else True
 
 
