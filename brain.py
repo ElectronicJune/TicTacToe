@@ -19,7 +19,6 @@ class memory :
     def react(self,code):
         self.add(code)
         index = np.where(self.game_code==code)[0][0]
-        print([x/(self.game_choice_p[index].sum()) for x in self.game_choice_p[index]])
         return random.choice(self.game_choice[index],p=[x/(self.game_choice_p[index].sum()) for x in self.game_choice_p[index]],size=1)[0]
     def learn(self,code,position,winner):
         index = np.where(self.game_code==code)[0][0]
