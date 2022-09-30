@@ -27,6 +27,7 @@ def player_play(code):
         position = input('Piece position: ').strip()
         if len(position)==1 and position.isdigit() and (position in code):
             break
+    player_history.add(code,position)
     return code[:int(position)-1] + rules.player_piece + code[int(position):]
 while run_game :
     game_round += 1
@@ -53,7 +54,10 @@ while run_game :
     #brain learn
     for key in bot_history.list :
         bot.learn(key,bot_history.list[key],rules.winner(game_condition))
+    for key in player_history.list :
+        bot.learn(key,player_history.list[key],rules.winner(game_condition))
     bot_history.clear()
+    player_history.clear()
     run_game = False if input('Play again? [Y/n]: ').lower()=='n' else True
 
 
