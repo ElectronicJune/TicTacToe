@@ -32,6 +32,7 @@ class memory :
         else :
             self.game_choice_p[index][np.where(self.game_choice[index]==position)[0][0]] += 1
     def learn_from_player(self,code,position,winner):
+        self.add(code)
         index = np.where(self.game_code==code)[0][0]
         if winner == rules.player_piece:
             self.game_choice_p[index][np.where(self.game_choice[index]==position)[0][0]] += 2
