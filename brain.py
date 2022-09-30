@@ -25,7 +25,10 @@ class memory :
         if winner == rules.bot_piece:
             self.game_choice_p[index][np.where(self.game_choice[index]==position)[0][0]] += 2
         elif winner == rules.player_piece :
-            self.game_choice_p[index][np.where(self.game_choice[index]==position)[0][0]] -= 1
+            for i in range(9):
+                if self.game_choice[index][i] != position :
+                    if self.game_choice[index][i] != '0' :
+                        self.game_choice_p[index][i] += 1
         else :
             self.game_choice_p[index][np.where(self.game_choice[index]==position)[0][0]] += 1
     def learn_from_player(self,code,position,winner):
@@ -33,6 +36,9 @@ class memory :
         if winner == rules.player_piece:
             self.game_choice_p[index][np.where(self.game_choice[index]==position)[0][0]] += 2
         elif winner == rules.bot_piece :
-            self.game_choice_p[index][np.where(self.game_choice[index]==position)[0][0]] -= 1
+            for i in range(9):
+                if self.game_choice[index][i] != position :
+                    if self.game_choice[index][i] != '0' :
+                        self.game_choice_p[index][i] += 1
         else :
             self.game_choice_p[index][np.where(self.game_choice[index]==position)[0][0]] += 1
