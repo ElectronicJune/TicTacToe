@@ -43,3 +43,7 @@ class memory :
                         self.game_choice_p[index][i] += 1
         else :
             self.game_choice_p[index][np.where(self.game_choice[index]==position)[0][0]] += 2
+    def save_arr_tofile(self):
+        np.savetxt('game_code.csv',self.game_code , delimiter=',')
+        np.savetxt('game_choice.csv',self.game_choice , delimiter=',')
+        np.savetxt('game_choice_prob.csv',self.game_choice_p , delimiter=',')
