@@ -52,7 +52,7 @@ class memory :
     def compress_data(self):
         for i in range(len(self.game_choice_p)) :
             gcd = np.gcd.reduce(self.game_choice_p[i])
-            self.game_choice_p[i] = np.divide(self.game_choice_p[i],np.array([gcd for j in range(9)],dtype=float64))
+            self.game_choice_p[i] = np.divide(self.game_choice_p[i],np.array([gcd for j in range(9)]))
 
     def save_arr_tofile(self):
         np.savetxt('game_code.csv',self.game_code , delimiter=',',fmt='%s')
