@@ -9,6 +9,9 @@ class memory :
     def possible_position(self,code):
         arr = [c for c in code if c in '123456789' ]
         return arr + ['0' for i in range(9-len(arr))]
+    def to_pb_code(self,code):
+        code = code.replace(rules.bot_piece,'b').replace(rules.player_piece,'p')
+        return code
     def add(self,code):
         if code not in self.game_code :
             self.game_code = np.concatenate((self.game_code,[code]))
@@ -17,10 +20,12 @@ class memory :
             p += [0 for i in range(9-len(p))]
             self.game_choice_p = np.vstack((self.game_choice_p,p))
     def react(self,code):
+        code = self.to_pb_code(code)
         self.add(code)
         index = np.where(self.game_code==code)[0][0]
         return random.choice(self.game_choice[index],p=[x/(self.game_choice_p[index].sum()) for x in self.game_choice_p[index]],size=1)[0]
     def learn(self,code,position,winner):
+        code = self.to_pb_code(code)
         index = np.where(self.game_code==code)[0][0]
         if winner == rules.bot_piece:
             self.game_choice_p[index][np.where(self.game_choice[index]==position)[0][0]] += 4
@@ -32,6 +37,7 @@ class memory :
         else :
             self.game_choice_p[index][np.where(self.game_choice[index]==position)[0][0]] += 2
     def learn_from_player(self,code,position,winner):
+        code = self.to_pb_code(code)
         self.add(code)
         index = np.where(self.game_code==code)[0][0]
         if winner == rules.player_piece:
