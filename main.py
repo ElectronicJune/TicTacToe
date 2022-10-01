@@ -60,4 +60,6 @@ while run_game :
     player_history.clear()
     run_game = False if input('Play again? [Y/n]: ').lower()=='n' else True
 
+bot.save_arr_tofile()
+
 
