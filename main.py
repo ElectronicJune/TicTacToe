@@ -58,6 +58,7 @@ while run_game :
         bot.learn_from_player(key,player_history.list[key],rules.winner(game_condition))
     bot_history.clear()
     player_history.clear()
+    bot.compress_data()
     run_game = False if input('Play again? [Y/n]: ').lower()=='n' else True
 
 bot.save_arr_tofile()

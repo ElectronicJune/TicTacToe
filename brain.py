@@ -49,6 +49,11 @@ class memory :
                         self.game_choice_p[index][i] += 1
         else :
             self.game_choice_p[index][np.where(self.game_choice[index]==position)[0][0]] += 2
+    def compress_data(self):
+        for i in range(len(self.game_choice_p)) :
+            gcd = np.gcd.reduce(self.game_choice_p[i])
+            self.game_choice_p[i] = np.divide(self.game_choice_p[i],[gcd for j in range(9)])
+
     def save_arr_tofile(self):
         np.savetxt('game_code.csv',self.game_code , delimiter=',',fmt='%s')
         np.savetxt('game_choice.csv',self.game_choice , delimiter=',',fmt='%s')
