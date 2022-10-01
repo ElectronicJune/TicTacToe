@@ -14,7 +14,7 @@ class memory :
             self.game_code = np.concatenate((self.game_code,[code]))
             self.game_choice = np.vstack((self.game_choice,self.possible_position(code)))
             p = [2 for i in code if i in '123456789']
-            p += [0 for i in range(9-len(p))]
+            p.extend([0 for i in range(9-len(p))])
             self.game_choice_p = np.vstack((self.game_choice_p,p))
     def react(self,code):
         self.add(code)
