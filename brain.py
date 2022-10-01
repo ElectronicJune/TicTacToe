@@ -1,11 +1,11 @@
 import numpy as np
-from numpy import random
+from numpy import float64, random
 import rules
 
 class memory :
     game_code = np.loadtxt('game_code.csv',delimiter=',',dtype='S')
     game_choice = np.loadtxt('game_choice.csv',delimiter=',',dtype='S')
-    game_choice_p = np.loadtxt('game_choice_prob.csv',delimiter=',')
+    game_choice_p = np.loadtxt('game_choice_prob.csv',delimiter=',',dtype='i')
     def possible_position(self,code):
         arr = [c for c in code if c in '123456789' ]
         return arr + ['0' for i in range(9-len(arr))]
@@ -52,7 +52,7 @@ class memory :
     def compress_data(self):
         for i in range(len(self.game_choice_p)) :
             gcd = np.gcd.reduce(self.game_choice_p[i])
-            self.game_choice_p[i] = np.divide(self.game_choice_p[i],[gcd for j in range(9)])
+            self.game_choice_p[i] = np.divide(self.game_choice_p[i],np.array([gcd for j in range(9)],dtype=float64))
 
     def save_arr_tofile(self):
         np.savetxt('game_code.csv',self.game_code , delimiter=',',fmt='%s')
