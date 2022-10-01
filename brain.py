@@ -3,9 +3,9 @@ from numpy import random
 import rules
 
 class memory :
-    game_code = np.array(['123456789'])
-    game_choice = np.array(['1','2','3','4','5','6','7','8','9'],ndmin=2)
-    game_choice_p = np.array([2 for i in range(9)],ndmin=2)
+    game_code = np.loadtxt('game_code.csv',delimiter=',',dtype='S')
+    game_choice = np.loadtxt('game_choice.csv',delimiter=',',dtype='S')
+    game_choice_p = np.loadtxt('game_choice_prob.csv',delimiter=',')
     def possible_position(self,code):
         arr = [c for c in code if c in '123456789' ]
         return arr + ['0' for i in range(9-len(arr))]
