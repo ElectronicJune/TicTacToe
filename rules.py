@@ -8,7 +8,7 @@ def is_gameover(code):
     if code[0] == code[4] == code[8] or code[2] == code[4] == code[6] :
         return True
     for i in code:
-        if i.isdigit() :
+        if i.isdigit() and i!='0' :
             break
     else:
         return True
