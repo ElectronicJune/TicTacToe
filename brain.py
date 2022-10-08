@@ -1,5 +1,5 @@
 import numpy as np
-from numpy import float64, random
+from numpy import random
 import rules
 
 class memory :
