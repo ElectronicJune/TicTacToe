@@ -5,8 +5,11 @@ import rules
 class memory :
     game_code = np.loadtxt('game_code.csv',delimiter=',',dtype='S')
     game_choice_p = np.loadtxt('game_choice_prob.csv',delimiter=',',dtype='i')
-    def to_pb_code(self,code):
-        code = code.replace(rules.bot_piece,'b').replace(rules.player_piece,'p')
+    def to_pb_code(self,code,change_view=False):
+        if not change_view :
+            code = code.replace(rules.bot_piece,'b').replace(rules.player_piece,'p')
+        else :
+            code = code.replace(rules.player_piece,'b').replace(rules.bot_piece,'p')
         return code
     def add(self,code):
         if code not in self.game_code :
@@ -31,7 +34,7 @@ class memory :
         else :
             self.game_choice_p[index][int(position)-1] += 2
     def learn_from_player(self,code,position,winner):
-        code = self.to_pb_code(code)
+        code = self.to_pb_code(code,change_view=True)
         self.add(code)
         index = np.where(self.game_code==code)[0][0]
         if winner == rules.player_piece:
