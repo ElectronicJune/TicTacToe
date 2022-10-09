@@ -31,10 +31,12 @@ while input('Explore 1000 rounds? [Y/n] ').lower()=='y' :
             inner_game_round+=1
         print(i)
         #brain learn
-        for key in bot_history.list :
-            bot.learn(key,bot_history.list[key],rules.winner(game_condition))
-        for key in player_history.list :
-            bot.learn_from_player(key,player_history.list[key],rules.winner(game_condition))
+        if not rules.winner(game_condition)==rules.bot_piece:
+            for key in player_history.list :
+                bot.learn_from_player(key,player_history.list[key],rules.winner(game_condition))
+        if not rules.winner(game_condition)==rules.player_piece:
+            for key in bot_history.list :
+                bot.learn(key,bot_history.list[key],rules.winner(game_condition))
         player_history.clear()
         bot_history.clear()
         bot.compress_data()
