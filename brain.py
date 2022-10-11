@@ -4,7 +4,7 @@ import rules
 
 class memory :
     game_code = np.loadtxt('game_code.csv',delimiter=',',dtype=str)
-    game_choice_p = np.loadtxt('game_choice_prob.csv',delimiter=',',dtype='i')
+    game_choice_p = np.loadtxt('game_choice_prob.csv',delimiter=',',dtype=int)
     def to_pb_code(self,code,change_view=False):
         if not change_view :
             code = code.replace(rules.bot_piece,'b').replace(rules.player_piece,'p')
